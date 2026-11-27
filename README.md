@@ -191,7 +191,7 @@ visa_eval FedCon_Bayesian_ProtoMAML/evaluate_fedcon_baypranometa_visa_three_seed
 
 ## Support-size sensitivity
 
-The main Full evaluations above use `--save-episode-plan` to export dataset-relative episode identities. They also supply the K=5 results. Run the sensitivity script once per remaining size. The support sets are nested, **S₁ ⊂ S₃ ⊂ S₅ ⊂ S₇**, and the queries are fixed across sizes. The release contains no historical manifests.
+The main Full evaluations above use `--save-episode-plan` to export dataset-relative episode identities. They also supply the K=5 results. Run the sensitivity script once per remaining size. The support sets are nested, **S₁ ⊂ S₃ ⊂ S₅ ⊂ S₇**, and the queries are fixed across sizes. Historical episode manifests are not included.
 
 ```bash
 for k in 1 3 7; do
@@ -206,7 +206,7 @@ done
 
 ## Query diagnostics and p0-only
 
-The Full evaluation examples use `--save-query-diagnostics`. The export records the squared embedding norm, `log p0(z | S)`, `log p1(z)`, and the likelihood-ratio score for each query. The p0-only scripts read these fresh exports and the associated Full metrics and manifests.
+The Full evaluation examples use `--save-query-diagnostics`. The export records the squared embedding norm, `log p0(z | S)`, `log p1(z)`, and the likelihood-ratio score for each query. The p0-only scripts use these exported diagnostics together with the associated Full metrics and manifests.
 
 ```bash
 python "$M/BayPrAnoMeta_p0Only_MVTec/run_p0_only_analysis.py" \
@@ -263,7 +263,7 @@ Fresh runs can write checkpoints, metric files, episode plans, query diagnostics
 
 ## Reproducibility status
 
-All retained Python files passed syntax and import checks, and the retained CLI entry points passed `--help` checks. Lightweight verification covered trainer-to-evaluator checkpoint compatibility, main-model forward passes and single inner-adaptation steps, and Controlled PatchCore encoder and coreset handoffs. Checks also covered support-plan consumption, diagnostic export and consumption, matched representation inputs and geometry, and paired-statistics determinism. These were targeted fixture and interface checks. Historical trained checkpoints and paper-result CSVs are excluded, and full paper-scale training and evaluation were not rerun after packaging.
+All Python files passed syntax and import checks, and the main command-line scripts were checked using `--help`. We also tested checkpoint loading, forward passes, a single inner-loop adaptation step, and the Controlled PatchCore pipeline. These checks verify the main interfaces of the released code, but they are not a full reproduction of the experiments. Trained checkpoints and result CSV files from the original experiments are not included, and the full training and evaluation runs were not repeated for this release.
 
 ## PatchCore attribution
 
