@@ -16,7 +16,7 @@ BayPrAnoMeta uses a small support set of normal images to adapt an embedding mod
 
 ## Installation
 
-Use Python 3.11 or newer and install compatible PyTorch and torchvision builds for your platform. [requirements.txt](requirements.txt) records the versions used for release verification.
+Use Python 3.11 or newer and install PyTorch and torchvision versions compatible with your platform. The remaining dependencies are listed in [requirements.txt](requirements.txt).
 
 ```bash
 python -m venv .venv
@@ -25,15 +25,15 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Standard PatchCore can use the verified scikit-learn brute-force squared-L2 fallback without FAISS. FAISS is optional.
+For Standard PatchCore, FAISS is optional. The implementation can instead use the scikit-learn brute-force squared-L2 search included in the released code.
 
 ## Datasets and experiment settings
 
 Download MVTec AD and VisA separately. Supply their extracted roots through `--data-root`.
 
-**MVTec AD.** In the corrected protocol, normal training and validation images come from `train/good`. The `test/good` images are reserved for evaluation. Split seed 42 selects one held-out anomaly subtype per eligible category. That subtype is excluded from training and validation. Within each test episode, support and query images are disjoint.
+**MVTec AD.** Normal training and validation images are taken from `train/good`, while `test/good` is reserved for evaluation. Using split seed 42, one anomaly subtype is held out for each eligible category and excluded from training and validation. Support and query images are disjoint within each test episode.
 
-**VisA.** Exact paper reproduction requires both the [official two-class high-shot CSV](protocols/visa/2cls_highshot.csv) and the [paper image allowlist](protocols/visa/visa_2cls_highshot_available_images.txt). The CSV lists 10,821 images. The paper used the 2,173 images available in the audited experimental installation, comprising 1,302 official training images and 871 official test images. The loader preserves the official labels and split assignments. Split seed 42 divides the eligible official training images into meta-training and validation pools. The audit verified all 871 historical test identities path by path. The 1,302 training-side identities come from the audited installation and match historical counts by partition and label. Historical records did not independently verify each training-side path.
+**VisA.** Exact paper reproduction requires both the [official two-class high-shot CSV](protocols/visa/2cls_highshot.csv) and the [paper image allowlist](protocols/visa/visa_2cls_highshot_available_images.txt). The CSV lists 10,821 images. The paper used the 2,173 images available in the dataset installation used for the experiments, comprising 1,302 official training images and 871 official test images. The loader preserves the official labels and split assignments. Split seed 42 divides the eligible official training images into meta-training and validation pools. The identities of all 871 test images were verified against the records from the original experiments. For the 1,302 training images, the available records reproduce the same counts by split and label, although individual training-image paths could not be independently checked.
 
 The VisA allowlist SHA-256 is `0471d94109ed6716cfd53ca05899b9d1374b210f504bf3e70e9629535ea25055`.
 
@@ -257,9 +257,11 @@ python paired_support_sensitivity.py \
 
 ## Loss, runtime, and outputs
 
-The retained neural trainers emit `loss_history.json` with the unsmoothed training and validation losses used for plotting, per epoch for centralized methods and per round for federated methods. The release excludes historical exact epoch-loss JSON files. Runtime and peak process RSS instrumentation is retained. Paper-scale timing was not rerun after packaging.
+The neural training scripts write `loss_history.json`, containing the raw training and validation losses used for plotting. Losses are recorded by epoch for centralized methods and by communication round for federated methods. The original loss-history files from the paper experiments are not included in the release.
 
-Fresh runs can write checkpoints, metric files, episode plans, query diagnostics, figures, loss histories, and runtime records. Generated outputs are intentionally excluded from the public repository. [`.gitignore`](.gitignore) excludes common experiment artifacts by default.
+Runtime and peak process RSS measurements are supported by the released code, although the full timing experiments reported in the paper were not repeated for this release.
+
+New runs can generate checkpoints, metric files, episode plans, query diagnostics, figures, loss histories, and runtime records. These generated files are not included in the repository. The [`.gitignore`](.gitignore) file excludes common experiment outputs by default.
 
 ## Reproducibility status
 
