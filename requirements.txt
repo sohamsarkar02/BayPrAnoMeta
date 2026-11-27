@@ -1,0 +1,18 @@
+# Use Python 3.11 or newer (support-sensitivity runners use hashlib.file_digest).
+# Install torch and torchvision as a compatible pair for your platform.
+# Comments record versions in the checked environment, not mandatory pins.
+torch                 # checked 2.9.1
+torchvision           # checked 0.24.1
+numpy                 # checked 2.2.6
+scipy                 # checked 1.16.3
+scikit-learn          # checked 1.7.2; provides the CPU PatchCore fallback
+pillow                # checked 12.0.0
+matplotlib            # checked 3.10.7
+seaborn               # checked 0.13.2
+tqdm                  # checked 4.67.1
+timm                  # checked 1.0.28
+psutil                # checked 7.2.2
+higher                # checked 0.2.1
+
+# Optional: faiss-cpu for the FAISS backend in standard MVTec PatchCore.
+# It was absent in the checked environment. Omit it to use the checked fallback.

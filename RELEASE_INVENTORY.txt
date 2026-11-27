@@ -1,0 +1,56 @@
+BayPrAnoMeta release inventory
+
+Retained experiment directories
+
+MVTec AD under MVTec AD Experiments/
+  Bayesian_Ablations/
+  Bayesian_ProtoMAML/
+  BayPrAnoMeta_NoAdapt_MVTec/
+  BayPrAnoMeta_p0Only_MVTec/
+  Classical MAML/
+  CLassical_ProtoMAML/
+  Contrastive_Bayesian_ProtoMAML/
+  FedCon_Bayesian_ProtoMAML/
+  Federated Bayesian_ProtoMAML/
+  Gaussian_BayPrAnoMeta_MVTec/
+  PatchCore/
+  Representation_Analysis_MVTec/
+  Standard_Unconstrained_PatchCore_MVTec/
+
+VisA under VisA Experiments/
+  Bayesian_Ablations/
+  Bayesian_ProtoMAML/
+  BayPrAnoMeta_NoAdapt_ViSA/
+  BayPrAnoMeta_p0Only_ViSA/
+  Classical MAML/
+  Classical_ProtoMAML/
+  Contrastive_Bayesian_ProtoMAML/
+  FedCon_Bayesian_ProtoMAML/
+  Federated Bayesian_ProtoMAML/
+  Gaussian_BayPrAnoMeta_ViSA/
+  PatchCore_Controlled_5Shot_ViSA/
+  Representation_Analysis_ViSA/
+
+Root analysis command
+  paired_support_sensitivity.py
+
+VisA protocols
+  protocols/visa/2cls_highshot.csv
+  protocols/visa/visa_2cls_highshot_available_images.txt
+  protocols/visa/visa_protocol.py
+
+Third-party source and notices
+  MVTec AD Experiments/Standard_Unconstrained_PatchCore_MVTec/official_patchcore/patchcore/
+  third_party/patchcore/LICENSE
+  third_party/patchcore/NOTICE
+  third_party/patchcore/ATTRIBUTION.txt
+
+Environment and packaging
+  requirements.txt (direct dependencies and checked versions)
+  .gitignore
+
+BayPrAnoMeta project-level license: MIT for BayPrAnoMeta-owned code (LICENSE).
+
+Total release files: 194
+Python files: 166
+Total release size: 1,805,551 bytes (logical file size, including this inventory).

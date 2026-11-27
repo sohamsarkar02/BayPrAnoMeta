@@ -1,0 +1,21 @@
+Upstream project: Amazon Science patchcore-inspection
+Upstream source: https://github.com/amazon-science/patchcore-inspection
+Retained package version: PatchCore 0.1.0
+Upstream license: Apache License 2.0 (see LICENSE and NOTICE here).
+
+The exact historical upstream commit is unavailable from the retained source snapshot.
+
+The vendored Python source is in the Standard_Unconstrained_PatchCore_MVTec
+experiment under official_patchcore/patchcore. A comparison against upstream
+main during packaging found only patchcore/common.py differed among the retained
+upstream files. This comparison does not establish the historical commit.
+
+The BayPrAnoMeta project locally modified patchcore/common.py to use an exact
+scikit-learn brute-force nearest-neighbor fallback when FAISS is unavailable.
+The fallback squares Euclidean distances to preserve squared-L2 scoring and
+supports saving and loading the fallback index. The experiment-specific MVTec
+fitting, evaluation, and protocol adapters are BayPrAnoMeta project code.
+These local changes are attributed to the BayPrAnoMeta project.
+
+This notice and the accompanying upstream LICENSE and NOTICE cover the
+vendored PatchCore source. BayPrAnoMeta's project-level license is pending.
