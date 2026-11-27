@@ -1,6 +1,6 @@
 # BayPrAnoMeta: Bayesian Proto-MAML for Few-Shot Industrial Image Anomaly Detection
 
-This repository accompanies the anonymous BayPrAnoMeta manuscript.
+This repository accompanies the BayPrAnoMeta manuscript.
 
 BayPrAnoMeta uses a small support set of normal images to adapt an embedding model to an industrial inspection task. The model is meta-trained on episodes. A Normal–Inverse-Wishart (NIW) prior and the adapted support embeddings define a Student-t posterior predictive model for normality. Query anomalies are ranked by the log-likelihood ratio `log p1(z) - log p0(z | S)`, where `p1` is a fixed anomaly reference and `p0` is the support-conditioned normal predictive density. The release also includes supervised-contrastive and federated extensions.
 
